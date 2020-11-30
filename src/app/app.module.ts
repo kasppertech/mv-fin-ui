@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { LoginComponent } from './view/login/login.component';
@@ -99,7 +99,9 @@ import {InputMaskModule} from 'primeng/inputmask';
   ],
   providers: [
     ConfirmationService, 
+    DatePipe,
     MessageService,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

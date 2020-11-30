@@ -20,6 +20,7 @@ export class DashboardService {
   }
 
   getDash(): Observable<any> {
+    debugger
     return this.http.get<any>(`${this.apiUrl}/movimentacao`);
   }
 }

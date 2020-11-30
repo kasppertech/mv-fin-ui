@@ -6,7 +6,7 @@ import { AppComponent } from 'src/app/app.component';
 import { Cliente } from 'src/app/model/cliente';
 
 import { Conta } from 'src/app/model/conta';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { ContaService } from 'src/app/services/conta.service';
 import { EnderecoService } from 'src/app/services/endereco.service';
@@ -14,6 +14,7 @@ import { ClienteFilter } from 'src/app/model/cliente.filter';
 import { UtilsService } from 'src/app/services/utils.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { Movimentacao } from 'src/app/model/movimentacao';
+import { DatePipe } from '@angular/common';
 
 declare var require: any;
 
@@ -48,10 +49,6 @@ export class HomeComponent implements OnInit {
   utilsService = new UtilsService;
   // movimentacoes: Movimentacao;
   movimentacoes = new Movimentacao();
-  
-
-
-
 
   constructor(
     public app: AppComponent,
@@ -61,34 +58,9 @@ export class HomeComponent implements OnInit {
     private enderecoService: EnderecoService,
     private messageService: MessageService,
     private dashboardService: DashboardService,
-    private movimentacaoService: MovimentacaoService
+    private movimentacaoService: MovimentacaoService,
+    private datePipe: DatePipe
   ) {
-    // this.data = {
-
-    //   labels: ['Número de Clientes','Total de Movimentações','Contas Vinculadas','Valor','Contas Inativas'],
-    //   datasets: [
-    //       {
-    //           data: [this.totalRegistros, 50, 100,98,56],
-    //           backgroundColor: [
-    //               "#FF6384",
-    //               "#36A2EB",
-    //               "#FFCE56",
-    //               '#AA7906',
-    //               "#CCDD87",
-
-
-    //           ],
-    //           hoverBackgroundColor: [
-    //             "#FF6384",
-    //             "#36A2EB",
-    //             "#FFCE56",
-    //             '#AA7906',
-    //             "#CCDD87",
-    //           ]
-    //       }]    
-    //   };
-
-
   }
 
   selectData(event) {
@@ -97,10 +69,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClientes();
-   this.getMovimentos();
-
-
-
+    this.getMovimentos();
   }
 
   saldoTodosCliente() {
@@ -110,7 +79,6 @@ export class HomeComponent implements OnInit {
 
       var FileSaver = require("file-saver");
 
-
       let blob = new Blob([this.utilsService.base64toBlob(response.data, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')], {});
       FileSaver.saveAs(blob, response.nomeArquivo);
     });
@@ -118,10 +86,10 @@ export class HomeComponent implements OnInit {
   }
 
   getMovimentos() {
+    
     this.dashboardService.getDash().subscribe(
       data => {
-        this.movimentacoes = data.listVo;
-        console.log(this.movimentacoes);
+       this.movimentacoes = data;
       },
       error => {
         // this.validaErro(error);
@@ -129,34 +97,19 @@ export class HomeComponent implements OnInit {
   }
 
   ReceitaPorPeriodo() {
-
+    this.movimentacaoFilter.dataInicial = this.datePipe.transform(this.movimentacaoFilter.dataInicial,"yyyy-MM-dd");
+    this.movimentacaoFilter.dataFinal = this.datePipe.transform(this.movimentacaoFilter.dataFinal,"yyyy-MM-dd");
 
     this.movimentacaoService.getReceita(this.movimentacaoFilter).subscribe(response => {
-
       var FileSaver = require("file-saver");
-
 
       let blob = new Blob([this.utilsService.base64toBlob(response.data, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')], {});
       FileSaver.saveAs(blob, response.nomeArquivo);
     });
 
+    this.movimentacaoFilter = new MovimentacaoFilter();
+
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   getClientes() {
 
