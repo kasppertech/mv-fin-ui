@@ -1,0 +1,130 @@
+/* You can add global styles to this file, and also import other style files */
+.testeView{
+
+//   display: table;
+//   width: 100%;
+//   height: 100vh;
+//   padding: 100px 0;
+//   color: white;
+//   background: url('./assets/img/papel-de-parede-gradiente-com-tons-de-verde_23-2148356759.jpg') no-repeat bottom center scroll;
+//   background-position: 30% 45%;
+//   background-size: cover;
+}
+
+
+.layout-content {
+    margin-left: 0px !important;
+    // padding: 0 !important;
+    // padding-top: 70px;
+    // padding: 15px;
+}
+
+:host ::ng-deep p-fieldset {
+    width: 85%;
+}
+
+:host ::ng-deep .p-fieldset.p-fieldset-legend a{
+    color: #057486;
+    background: white;
+    font-size: 22px;
+}
+
+:host ::ng-deep .p-fieldset .p-fieldset-legend {
+    border: none;
+    color: #057486;
+    background: transparent;
+    font-weight: 700;
+    border-radius: 2px;
+}
+
+:host ::ng-deep.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a{
+    color: #057486;
+    background: white;
+    // font-size: 22px;
+}
+
+// :host ::ng-deep .p-fieldset.p-fieldset-toggleable .p-fieldset-legend {
+//     border: none;
+//     color: #057486;
+//     background: transparent;
+//     font-weight: 700;
+//     border-radius: 2px;
+// }
+
+@media (max-width: 1024px) {
+    .layout-content {
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 980px) {
+
+    .pi-globe{
+        margin-top: 3px;
+    }
+
+    .text-detalhes{
+        display: flex;
+    }
+
+    .box-perfil{
+        display:flex;
+        margin-left: -296px;
+        .perfil-content{
+            text-align: left;
+        }
+    }
+
+    .perfilBtn{
+        width: 100%;
+        position: relative;
+        top:30px;
+        margin-left: 10%;
+    }
+
+    .table th {
+        display: none;
+    }
+    .table,
+    .table body,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+        
+    }
+    .table tr {
+        margin-bottom: 15px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+        .candidato-img{
+            display: none;
+        }
+    }
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .btn {
+        margin-left: 0px;
+    }
+
+    .title-table{
+        background:#33d1e6;
+        color: white;
+    }
+
+  
+   
+}
+

@@ -1,0 +1,14 @@
+.box-doc{
+    display: inline-flex;
+    justify-content: right;
+}
+
+.btn-buscar{
+    position: relative;
+    top: 43%;
+    background:  #05a7a6 !important;
+}
+
+:host ::ng-deep p-fieldset {
+    width: 85%;
+}

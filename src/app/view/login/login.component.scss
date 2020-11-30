@@ -1,0 +1,122 @@
+// .p-grid{
+//     background-color:#7e99a47d ;
+// }
+.text-center {
+    text-align: center;
+}
+
+.color-background {
+    background: #05a7a6;
+}
+
+.imgLo{
+   margin-left: 80px;
+}
+
+.layout-content-login {
+    margin-left: 0px !important;
+    padding: 0 !important;
+}
+
+.card {
+    margin-top: 15em;
+  
+}
+
+.card-logo{
+    
+        margin-top: 200px
+}
+
+.card-login {
+    display: flex;
+position: relative;
+left: 50%;
+bottom: 300px;
+}
+
+.bloco-img {
+    img {
+        width: 100%;
+        height: 953px;
+    }
+}
+
+// .bloco-img{
+//     width: 100%;
+//     height: 953px;
+// }
+
+
+@media (max-width: 768px) {
+    .bloco-img {
+        display: none;
+    }
+    .card {
+        margin-top: 0px;
+        width: 100%;
+     
+    }
+
+    .card-login{
+        position: fixed;
+        left: 0%;
+        bottom: 250px;
+        width: 100%;
+
+    }
+
+    .card-logo{
+        // display: none;
+        margin-top: 6px;
+        margin-left: 20%;
+    }
+    .box-login {
+        margin-left: 0em;
+        width: 100%;
+    }
+    .imgLo{
+        // display: none;
+        width: 275px;
+        height: 90px;
+     }
+}
+
+
+@media (max-width: 480px) {
+
+    .card-logo{
+        // display: none;
+        margin-top: -15%;
+        margin-left: 10px;
+    }
+    .box-login {
+        margin-left: 0em;
+        width: 100%;
+    }
+    .imgLo{
+        // display: none;
+        width: 160px;
+        height: 55px;
+     }
+     .card-login{
+        position: fixed;
+        left: 0%;
+        bottom: 120px;
+        width: 100%;
+
+    }
+
+}
+
+.view-login{
+  display: table;
+  width: 100%;
+  height: 100vh;
+  padding: 100px 0;
+  color: white;
+  background: url('../../../assets/img/papel-de-parede-gradiente-com-tons-de-verde_23-2148356759.jpg') no-repeat bottom center scroll;
+  background-position: 30% 45%;
+  background-size: cover;
+  position: fixed;
+}

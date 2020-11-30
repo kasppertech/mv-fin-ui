@@ -1,0 +1,103 @@
+<div class="p-grid p-col-12">
+    <p-fieldset class="p-col-12" legend="Painel Geral">
+        <p-card class="p-col-12">
+            <p><b>
+
+                    Movimentações
+
+                </b></p>
+            <div class="p-grid p-lg-12 p-sm-12 p-md-12">
+                <div class="p-lg-6 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12" styleClass="card-totais">
+
+
+                        <p class="title">Clientes Cadastrados</p>
+
+                        <p class="totais">
+                            Total de Clientes {{totalClientes}}
+                        </p>
+                        <button pButton pRipple type="button" label="Saldo Clientes" pTooltip="Gera Relatório dos Saldos" tooltipPosition="top"
+                        class="btn-salvar p-button-rounded" (click)="saldoTodosCliente()"></button>
+                    </p-card>
+                </div>
+                <div class="p-lg-6 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12" styleClass="card-totais">
+                        <p class="title">
+                            Quantidade de Movimentações 
+                        </p>
+                        <p class="totais">
+                            {{movimentacoes.qtdeMovimentacao  ? movimentacoes.qtdeMovimentacao : '-'}}
+                        </p>
+                        <div class="p-lg-12 p-md-12 p-sm-12" style="display: flex; height: 37px;">
+                           <div class="p-field p-sm-12 p-md-6 p-lg-6 box-data" >
+                            <div class="p-field p-sm-12 p-md-6 p-lg-6">
+                                <label for="dataIni">Data Inicial</label>
+                                <p-calendar [showIcon]="true" inputId="icon" dateFormat="dd/mm/yy" [monthNavigator]="true"
+                                    [(ngModel)]="movimentacaoFilter.dataInicial" [yearNavigator]="true" yearRange="2020:2030">
+                                </p-calendar>
+                            </div>
+                            <div class="p-field p-sm-12 p-md-6 p-lg-6">
+                                <label for="dataFim">Data Final</label>
+                                <p-calendar [showIcon]="true" inputId="icon" dateFormat="dd/mm/yy" [monthNavigator]="true"
+                                    [(ngModel)]="movimentacaoFilter.dataFinal" [yearNavigator]="true" yearRange="2020:2030">
+                                </p-calendar>
+                            </div>
+                           </div>
+                        
+                        <div class="p-lg-6 p-md-12 p-sm-12">
+                            <button pButton pRipple type="button" label="Receita por período" pTooltip="Gera Relatório por período" tooltipPosition="top"
+                                class="btn-salvar p-button-rounded" (click)="ReceitaPorPeriodo()"></button>
+                        </div>
+                    </div>
+                    </p-card>
+                </div>
+                <div class="p-lg-3 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12">
+                        <p-header>
+                            Total Movimentado
+                        </p-header>
+                        <p class="totais">
+                            {{movimentacoes.saldoTotal  ? movimentacoes.saldoTotal : '-'}}
+                        </p>
+                    </p-card>
+                </div>
+                <div class="p-lg-3 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12">
+                        <p-header>
+                            Movimento Semanal
+                        </p-header>
+                        <p class="totais">
+                            {{movimentacoes.movSemanal  ? movimentacoes.movSemanal : '-'}}
+                        </p>
+                    </p-card>
+                </div>
+                <div class="p-lg-3 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12">
+                        <p-header>
+                            Movimento Mensal
+                        </p-header>
+                        <p class="totais">
+                            {{movimentacoes.movMensal  ? movimentacoes.movMensal : '-'}}
+                        </p>
+                    </p-card>
+                </div>
+                <div class="p-lg-3 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12">
+                        <p-header>
+                            Movimento Anual
+                        </p-header>
+                        <p class="totais">
+                            {{movimentacoes.movAnual  ? movimentacoes.movAnual : '-'}}
+                        </p>
+                    </p-card>
+                </div>
+            </div>
+        </p-card>
+
+       
+
+
+    </p-fieldset>
+
+
+</div>

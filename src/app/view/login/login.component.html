@@ -1,0 +1,39 @@
+<div class="p-grid p-justify-center view-login">
+    <div class="p-col-6 card-logo">
+        <img class="imgLo" src="../../../assets/img/Marca-MV_horizontal1.png" alt="">
+    </div>
+    <div class="p-col-6  p-justify-center card-login">
+        <div class="p-col-10 p-sm-12 p-md-8 box-login">
+            <p-card>
+                <div class="p-grid">
+                    <div class="p-col-12 text-center">
+                        <!-- <img src="../../../assets/Grupo 225.png" alt="" style="background: #7945b0;"> -->
+                        <h2>Login</h2>
+                    </div>
+                    <div class="p-col-12">
+                        <label for="usuario">Usuário</label>
+                        <input class="p-col-12" name="usuario" type="text" [(ngModel)]="requestLogin.usuario"
+                            pInputText />
+                    </div>
+                    <div class="p-col-12">
+                        <label for="senha">Senha</label>
+                        <input class="p-col-12"  name="senha" type="password" [(ngModel)]="requestLogin.senha"
+                            pInputText />
+                    </div>
+                    <div class="p-col-12">
+                        <button class="p-col-12 color-background" (click)="doLogin()" pButton type="button"
+                            label="Login"></button>
+                    </div>
+                    <!-- <div class="p-col-12 text-center">
+                        <p-button  label="Criar Conta" styleClass="p-button-link" [routerLink]="['/usuario']">
+                        </p-button>
+                    </div> -->
+                </div>
+            </p-card>
+        </div>
+    </div>
+</div>
+
+<div class="p-lg-6 p-sm-12 p-md-12 chart-box">
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>   
+</div>

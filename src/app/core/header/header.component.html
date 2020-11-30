@@ -1,0 +1,14 @@
+<div class="p-grid">
+    <p-menubar class="p-col-12" [model]="items">
+        <ng-template pTemplate="start">
+            <a href="#" id="menu-btn" class="menu-btn" (click)="app.onMobileMenuButton($event)">
+                <i class="fa fa-bars"></i>
+            </a>
+            <img src="../../../assets/img/logo-white.png" alt="" class="topbar-logo">
+        </ng-template>
+        <ng-template pTemplate="end">
+            {{nome}}
+            <button pButton class="btn-logout" label="Logout" icon="fa fa-sign-out-alt" (click)="logout()"></button>
+        </ng-template> 
+    </p-menubar>
+</div>

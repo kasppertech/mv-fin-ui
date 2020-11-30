@@ -1,0 +1,130 @@
+<div class="p-grid p-col-12">
+    <p-fieldset class="p-col-12" legend="Movimentações por Cliente">
+        <div class="p-grid p-lg-12 p-sm-12 p-md-12">
+            <div class="p-lg-12 p-sm-12 p-md-12 chart-box">
+                <p-card class="p-lg-12 p-md-12 p-sm-12">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-sm-12 p-md-6 p-lg-3">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" aria-describedby="nome-help" name="nome"
+                                pInputText [(ngModel)]="cliente.nome" disabled />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-3" *ngIf="cliente.razaoSocial">
+                            <label for="razaoSocial">Razão Social</label>
+                            <input id="razaoSocial" type="text" aria-describedby="razaoSocial-help" name="razaoSocial"
+                                pInputText [(ngModel)]="cliente.razaoSocial" disabled />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-3" >
+                            <label for="cpf">CPF / CNPJ</label>
+                            <input id="cpf" type="text" aria-describedby="cpf-help"  name="cpf"
+                                pInputText [(ngModel)]="cliente.identificador" disabled />
+                        </div>
+                        <div class="box-buttons p-col-3">
+                            <div class="btnVolta p-field p-sm-12 p-md-6 p-lg-6">
+                                <button pButton pRipple icon="pi pi-chevron-left" type="button" label="Voltar"
+                                    class="btn-voltar p-button-rounded" (click)="voltaPag()"></button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+
+        </div>
+
+    </p-fieldset>
+    <p-fieldset class="p-col-12" legend="Fluxo de Movimento">
+        <p-card class="p-col-12">
+       
+            <div class="p-grid p-lg-12 p-sm-12 p-md-12">
+                <div class="p-lg-2 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12">
+                       
+                        <p-header>
+                            Header content here
+                        </p-header>
+                        Body Content
+                       
+                    </p-card>
+                </div>
+                <div class="p-lg-2 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12"> <p-header>
+                            Header content here
+                        </p-header>
+                        Body Content</p-card>
+                </div>
+                 <div class="p-lg-2 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12"> <p-header>
+                            Header content here
+                        </p-header>
+                        Body Content</p-card>
+                </div>
+                <div class="p-lg-2 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12"> <p-header>
+                            Header content here
+                        </p-header>
+                        Body Content</p-card>
+                </div>
+                <div class="p-lg-2 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12"> <p-header>
+                            Header content here
+                        </p-header>
+                        Body Content</p-card>
+                </div>
+                <div class="p-lg-2 p-sm-12 p-md-6 chart-box">
+                    <p-card class="p-lg-12 p-md-12 p-sm-12"> <p-header>
+                            Header content here
+                        </p-header>
+                        Body Content
+                    </p-card>
+                </div>
+    
+            </div>
+    
+        </p-card>
+        <div class="p-lg-12 p-sm-12 p-md-12 boxBorder">
+            <div class="p-grid p-lg-12 p-sm-12 p-md-12">
+                <div class="p-lg-6 p-sm-12 p-md-12 chart-box">
+                    <p-card>
+                        <div class="head">
+                            <div class="dots">
+                                <p><b>
+                                        Total de Movimentações
+                                    </b></p>
+                                <div class="dot-leg">
+                                    <div class="dot case1"></div>
+                                    <label for="" class="leg">Clientes Cadastrados</label>
+                                </div>
+                                <div class="dot-leg">
+                                    <div class="dot case2"></div>
+                                    <label for="" class="leg">Total de Movimentações</label>
+                                </div>
+                                <div class="dot-leg">
+                                    <div class="dot case3"></div>
+                                    <label for="" class="leg">Contas Vinculadas</label>
+                                </div>
+                                <div class="dot-leg">
+                                    <div class="dot case4"></div>
+                                    <label for="" class="leg">Contas</label>
+                                </div>
+                                <div class="dot-leg">
+                                    <div class="dot case5"></div>
+                                    <label for="" class="leg">Contas</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+                <div class="p-lg-6 p-sm-12 p-md-12 chart-box">
+                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                    <p-chart type="doughnut" [data]="data" width="40vw" height="40vh"
+                        (onDataSelect)="selectData($event)">
+                    </p-chart>
+                </div>
+            </div>
+        </div>
+    </p-fieldset>
+
+
+</div>

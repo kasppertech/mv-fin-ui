@@ -1,0 +1,55 @@
+.btnSalva{
+    display: inline-flex;
+    justify-content: right;
+    position: relative;
+    // left: 88%;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td{
+    text-transform: uppercase;
+}
+
+.box-check{
+    display: inline-flex;
+}
+
+.p-field-checkbox{
+    position: relative;
+    top: 33%;
+}
+
+.box-buttons{
+    float: right;
+}
+
+.btn-custon{
+    background:  #05a7a6 !important;
+}
+
+.btn-add{
+    background:  #05a7a6 !important;
+    margin-top: 11%;
+}
+
+.btn-salvar{
+    background:  #05a7a6 !important;
+    width: 200px;
+}
+
+:host ::ng-deep p-fieldset {
+    width: 85%;
+}
+
+:host ::ng-deep .p-fieldset.p-fieldset-legend a{
+    color: #057486;
+    background: white;
+    font-size: 22px;
+}
+
+:host ::ng-deep .p-fieldset.p-fieldset-legend {
+    border: none;
+    color: #057486 !important;
+    background: transparent;
+    font-weight: 700;
+    border-radius: 2px;
+}

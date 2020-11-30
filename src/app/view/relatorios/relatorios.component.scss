@@ -1,0 +1,39 @@
+.box-doc{
+    display: inline-flex;
+    justify-content: right;
+    
+}
+
+
+
+:host ::ng-deep p-fieldset {
+    width: 100%;
+}
+
+
+
+:host ::ng-deep .p-component:disabled{
+    font-weight: bold;
+    color: black;
+    background: #7171714a ;
+}
+
+.btn-buscar{
+    position: relative;
+    top: 43%;
+    background:  #05a7a6 !important;
+}
+
+.box-buttons{
+    float: right;
+}
+
+
+.btn-voltar{
+    position: relative;
+    top: 75%;
+    background:  #05a7a6 !important;
+    width: 200px;
+    float: right;
+}
+

@@ -1,0 +1,123 @@
+.box-doc{
+    display: inline-flex;
+    justify-content: right;
+    
+}
+
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td{
+    text-transform: uppercase;
+}
+
+.btn-buscar{
+    position: relative;
+    top: 43%;
+    background:  #05a7a6 !important;
+}
+
+:host ::ng-deep p-fieldset {
+    width: 85%;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+    background: #05a7a6;
+}
+
+:host ::ng-deep .p-component:disabled{
+    font-weight: bold;
+    color: black;
+    background: #7171714a ;
+}
+
+.btn-add{
+    float: right;
+    width: 207px;
+    position: relative;
+    top: 39px;
+}
+
+@media(max-width: 980px) {
+    .table th {
+        display: none;
+    }
+    .table,
+    .table body,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .btn {
+        margin-left: 0px;
+    }
+
+    .title-table{
+        background: #05a7a6;
+        color: white;
+    }
+}
+
+@media(max-width: 480px) {
+
+    .btn-add{
+        top: 94px
+    }
+    .table th {
+        display: none;
+    }
+    .table,
+    .table body,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 0%;
+        text-align: right;
+        position: relative;
+        font-size: 10px;
+    }
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .btn {
+        margin-left: 0px;
+    }
+
+    .title-table{
+        background: #05a7a6;
+        color: white;
+    }
+}
+

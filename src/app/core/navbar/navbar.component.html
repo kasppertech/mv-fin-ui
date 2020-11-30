@@ -1,0 +1,41 @@
+<div class="layout-sidebar" [ngClass]="{'layout-sidebar-active':app.mobileMenuActive}">
+    <ul class="layout-menu" (click)="app.hideMobileMenu($event)" >
+      <li>
+        <a [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fas fa-laptop-house"></i>
+            <span>Home</span>
+          </a>
+      </li>
+      <li>
+        <a [routerLink]="['/consulta-cliente']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-user-tag"></i>
+          <span>Cliente</span>
+        </a>
+      </li>
+      <li>
+              <a [routerLink]="['/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/usuario']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-user"></i>
+          <span>Perfil</span>
+        </a>
+      </li>
+     
+      <li>
+        <a (click)="logout()">
+          <i class="fa fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </li>
+    </ul>
+  
+  </div>
+  
+  
+
+
+ 

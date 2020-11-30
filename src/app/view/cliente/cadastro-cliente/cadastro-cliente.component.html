@@ -1,0 +1,259 @@
+<div class="p-grid p-col-12">
+    <div>
+
+        <!-- ========================================================DADOS CLIENTE============================================================================== -->
+        <p-fieldset legend="Cadastrar Clientes">
+            <div class="p-col-12 box-totais">
+                <p-fieldset legend="Dados Pessoais" class="p-col-10">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-sm-12 p-md-6 p-lg-8">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" aria-describedby="nome-help" name="nome"
+                                [(ngModel)]="cliente.nome" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-8">
+                            <label for="razaoSocial">Razão Social</label>
+                            <input id="razaoSocial" type="text" aria-describedby="nome-help" name="razaoSocial"
+                                [(ngModel)]="cliente.razaoSocial" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="identificador">CPF / CNPJ</label>
+                            <input id="identificador" type="text" aria-describedby="identificador-help"
+                                name="identificador" [disabled]="clienteToSee" pInputText maxlength="18"
+                                [(ngModel)]="cliente.identificador" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="cnpj">Tipo</label>
+                            <p-dropdown [options]="tipoCadastro" [(ngModel)]="cliente.tipoCliente" [showClear]="true"
+                                placeholder="Tipo de Cadastro" optionLabel="tipo" (onChange)="clienteTipo($event)">
+                            </p-dropdown>
+
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2" *ngIf="clienteFS == false">
+                            <label for="nome">Inscrição Estadual</label>
+                            <input id="nome" type="text" aria-describedby="nome-help" name="nome" pInputText
+                                [(ngModel)]="cliente.inscricaoEstadual" />
+                        </div>
+
+
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="telefone">Telefone</label>
+                            <input id="telefone" type="text" aria-describedby="telefone-help" name="telefone"
+                                [(ngModel)]="cliente.telefone" pInputText maxlength="11"/>
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-4">
+                            <label for="email">E-mail</label>
+                            <input id="email" type="text" aria-describedby="email-help" name="email"
+                                [(ngModel)]="cliente.email" pInputText />
+                        </div>
+                    </div>
+                </p-fieldset>
+
+                <!-- ========================================================ENDEREÇO============================================================================== -->
+
+                <p-fieldset legend="Dados do Endereço" class="p-col-10 ">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="cep">CEP</label>
+                            <input id="cep" type="text" aria-describedby="cep-help" name="cep"
+                                [(ngModel)]="endereco.cep" pInputText maxlength="9" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-3">
+                            <label for="logradouro">Logradouro</label>
+                            <input id="logradouro" type="text" aria-describedby="logradouro-help" name="logradouro"
+                                [(ngModel)]="endereco.logradouro" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="numero">Número</label>
+                            <input id="numero" type="text" aria-describedby="endereco-help" name="numero" maxlength="10"
+                                [(ngModel)]="endereco.numero" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="complemento">Complemento</label>
+                            <input id="complemento" type="text" aria-describedby="numero-help" name="complemento"
+                                [(ngModel)]="endereco.complemento" style="width: 100%;" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="bairro">Bairro</label>
+                            <input id="bairro" type="text" aria-describedby="bairro-help" name="bairro"
+                                [(ngModel)]="endereco.bairro" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="cidade">Cidade</label>
+                            <input id="cidade" type="text" aria-describedby="cidade-help" name="cidade"
+                                [(ngModel)]="endereco.cidade" pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="uf">uf</label>
+                            <input id="uf" type="text" aria-describedby="uf-help" name="uf" maxlength="2" [(ngModel)]="endereco.uf"
+                                pInputText />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <button pButton pRipple type="button" icon="pi pi-plus"
+                                class="p-button-rounded p-button-success" style="margin-top: 29px;"
+                                (click)="addEndereco()"></button>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <p-table #dt [value]="enderecos" [rows]="10" [paginator]="true"
+                        [globalFilterFields]="['logradouro','numero','complemento','bairro','cidade','uf','cep']"
+                        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true">
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="logradouro">Logradouro<p-sortIcon field="logradouro"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="numero">Número<p-sortIcon field="numero"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="complemento">Complemento<p-sortIcon field="complemento">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="bairro">Bairro<p-sortIcon field="bairro"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="cidade">Cidade<p-sortIcon field="cidade"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="uf">UF<p-sortIcon field="uf"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="cep">CEP<p-sortIcon field="cep"></p-sortIcon>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-e>
+                            <tr>
+                                <td>{{e.logradouro}}</td>
+                                <td>{{e.numero}}</td>
+                                <td>{{e.complemento}}</td>
+                                <td>{{e.bairro}}</td>
+                                <td>{{e.cidade}}</td>
+                                <td>{{e.uf}}</td>
+                                <td>{{e.cep}}</td>
+                                <td>
+
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success p-mr-2"
+                                        (click)="editEndereco(e)"></button>
+                                    <button pButton pRipple icon="pi pi-trash"
+                                        class="p-button-rounded p-button-warning  p-mr-2"
+                                        (click)="deleteEndereco(e)"></button>
+
+
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-fieldset>
+
+                <!-- ========================================================CONTA============================================================================== -->
+
+                <p-fieldset legend="Dados da Conta">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="banco">Banco</label>
+                            <p-dropdown [options]="banco" [(ngModel)]="bancoSelected" [showClear]="true"
+                                placeholder="Banco" optionLabel="nome" (onChange)="changeBanco($event)"></p-dropdown>
+
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="tipo">Tipo de Conta</label>
+                            <p-dropdown [options]="tipoConta" [(ngModel)]="selectedTpConta" [showClear]="true"
+                                placeholder="Tipo de Conta" optionLabel="tipo" (onChange)="contaTipo($event)">
+                            </p-dropdown>
+
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="agencia">Agência</label>
+                            <input type="number" pInputText name="agencia" id="agencia" [(ngModel)]="conta.agencia" maxlength="8" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="agenciaDig">Dig.</label>
+                            <input type="number" pInputText name="agenciaDig" id="agenciaDig" maxlength="1"
+                                [(ngModel)]="conta.agenciaDig" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="conta">Conta</label>
+                            <input type="number" pInputText name="conta" id="conta" [(ngModel)]="conta.conta" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <label for="contaDig">Dig.</label>
+                            <input type="number" pInputText name="contaDig" id="contaDig" [(ngModel)]="conta.contaDig" maxlength="1" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="saldoInicial">Saldo Inicial</label>
+                            R$<input id="saldoInicial" type="number" aria-describedby="saldoInicial-help"
+                                name="saldoInicial" [(ngModel)]="conta.saldoInicial" pInputText />
+                        </div>
+
+
+                        <div class="p-field p-sm-12 p-md-6 p-lg-1">
+                            <button pButton pRipple type="button" icon="pi pi-plus"
+                                class="p-button-rounded p-button-success" style="margin-top: 29px;"
+                                (click)="addConta()"></button>
+                        </div>
+                    </div>
+
+
+
+
+                    <p-table #dt [value]="contas" [rows]="10" [paginator]="true"
+                        [globalFilterFields]="['codigoBanco','nomeBanco','agencia','agenciaDig','conta','contaDig','saldoInicial']"
+                        [rowHover]="true" dataKey="id" [showCurrentPageReport]="true">
+
+
+                        <ng-template pTemplate="header">
+                            <tr>
+
+                                <th pSortableColumn="nomeBanco">Banco<p-sortIcon field="nomeBanco"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="agencia">Agência<p-sortIcon field="agencia"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="conta">Conta<p-sortIcon field="conta"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="tipoCadastro">Tipo de Conta<p-sortIcon field="tipoCadastro">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="saldoInicial">Saldo Inicial<p-sortIcon field="saldoInicial">
+                                    </p-sortIcon>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-c>
+                            <tr>
+                                <td>{{c.codigoBanco}}-{{c.banco}}</td>
+                                <td>{{c.agencia}}-{{c.agenciaDig}}</td>
+                                <td>{{c.conta}}-{{c.contaDig}}</td>
+                                <td>{{c.tipoConta}}</td>
+                                <td>{{c.saldoInicial | currency:'BRL'}}</td>
+                                <td>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success p-mr-2"
+                                        (click)="editConta(c)"></button>
+                                    <button pButton pRipple icon="pi pi-trash"
+                                        class="p-button-rounded p-button-warning  p-mr-2"
+                                        (click)="deleteConta(c)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-fieldset>
+            </div>
+            <div class="box-buttons p-col-3">
+                <div class="btnSalva p-field p-sm-12 p-md-6 p-lg-6">
+                    <button pButton pRipple icon="pi pi-chevron-left" type="button" label="Voltar"
+                        class="btn-salvar p-button-rounded" (click)="voltaPag()"></button>
+                </div>
+                <div class="btnSalva p-field p-sm-12 p-md-6 p-lg-6">
+                    <button pButton pRipple icon="pi pi-check" type="button" label="Salvar Dados"
+                        class="btn-salvar p-button-rounded" (click)="salvar()"></button>
+                </div>
+            </div>
+        </p-fieldset>
+    </div>
+</div>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p-toast></p-toast>

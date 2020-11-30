@@ -1,0 +1,59 @@
+
+<div class="p-grid p-col-12">
+    
+        <p-fieldset legend="Relatorios">
+            <div class="p-col-12 box-totais">
+                <p-card class="p-col-10 " header="Gerar Relatório">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-sm-12 p-md-6 p-lg-12" *ngIf="cliente.razaoSocial">
+                            <label for="razaoSocial">Razão Social</label>
+                            <input id="razaoSocial" type="text" aria-describedby="razaoSocial-help" name="razaoSocial"
+                                pInputText [(ngModel)]="cliente.razaoSocial" disabled />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" aria-describedby="nome-help" name="nome"
+                                pInputText [(ngModel)]="cliente.nome" disabled />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2" >
+                            <label for="cpf">CPF / CNPJ</label>
+                            <input id="cpf" type="text" aria-describedby="cpf-help"  name="cpf"
+                                pInputText [(ngModel)]="cliente.identificador" disabled />
+                        </div>
+                        
+                        
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="dataIni">Data Inicial</label>
+                            <p-calendar [showIcon]="true" inputId="icon" dateFormat="dd/mm/yy" [monthNavigator]="true" [(ngModel)]="relatorioFilter.dataInicial"
+                                [yearNavigator]="true" yearRange="2020:2030" ></p-calendar>
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <label for="dataFim">Data Final</label>
+                            <p-calendar [showIcon]="true" inputId="icon" dateFormat="dd/mm/yy" [monthNavigator]="true" [(ngModel)]="relatorioFilter.dataFinal"
+                                [yearNavigator]="true" yearRange="2020:2030" ></p-calendar>
+                        </div>
+                       
+                    
+                        
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2" >
+                            <button pButton pRipple icon="pi pi-check" type="button" label="Relatório Saldo" pTooltip="Gera Relatório do cliente" tooltipPosition="top"
+                                class="btn-buscar p-button-rounded" (click)="saldoCliente()"></button>
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <button pButton pRipple icon="pi pi-check" type="button" label="Relatório por Período" pTooltip="Gera Relatório por período" tooltipPosition="top"
+                                class="btn-buscar p-button-rounded" (click)="saldoCLientePeriodo()"></button>
+                        </div>
+
+                    </div>
+                </p-card>
+                <div class="box-buttons p-col-3">
+                    <div class="btnVolta p-field p-sm-12 p-md-6 p-lg-12">
+                        <button pButton pRipple icon="pi pi-chevron-left" type="button" label="Voltar"
+                            class="btn-voltar p-button-rounded" (click)="voltaPag()"></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </p-fieldset>
+  
+</div>

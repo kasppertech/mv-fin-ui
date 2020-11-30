@@ -1,0 +1,135 @@
+:host ::ng-deep p-fieldset {
+    width: 100%;
+}
+
+:host ::ng-deep p-header {
+    font-weight: bold;
+    color: white;
+    background: #05a7a6;
+}
+
+.card-chartLeg {
+    // width: 50%;
+    // margin-top: 2%;
+    // position: relative;
+    text-align: center;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dots {
+    display: grid;
+    position: relative;
+    top: 30%;
+    text-align: left;
+    left: 35%;
+    label {
+        vertical-align: super;
+        margin-left: 2%;
+    }
+}
+
+:host ::ng-deep .p-card .p-card-body .card-totais {
+    padding: 0% !important;
+    background: #05a7a6;
+}
+
+.totais {
+    font-size: large;
+    font-weight: bold;
+    color: black;
+    position: relative    ;
+    top: -19px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    top: -18px;
+}
+
+.box-data{
+    display: inline-flex;
+    position: relative;
+    top: -39px;
+}
+
+.cards-painel {
+    height: 100px;
+    width: 23.5%;
+    border: 1px solid gray;
+    text-align: left;
+    vertical-align: middle;
+    border-left: 5px solid gray;
+}
+
+.cards-painel:hover {
+    border-left: 5px solid #f86920;
+    // border-left-width: medium;
+    height: 100px;
+}
+
+.cardBox {
+    margin-left: 2%;
+}
+
+.case1 {
+    background-color: #ff6384;
+}
+
+.case2 {
+    background-color: #36a2eb;
+}
+.case3 {
+    background-color: #ffce56;
+}
+.case4 {
+    background-color: #aa7906;
+}
+.case5 {
+    background-color: #ccdd87;
+}
+
+// .box-buttons{
+//     float: right;
+// }
+
+// .btnSalva{
+//     display: inline-flex;
+//     justify-content: right;
+//     position: relative;
+//     // left: 88%;
+// }
+
+@media (max-width: 980px) {
+    .cardBox {
+        margin-top: 10% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardBox {
+        margin-top: 52%;
+    }
+    .chart-box {
+        width: 100%;
+    }
+    .dots {
+        display: grid;
+        position: relative;
+        top: 30%;
+        text-align: left;
+        left: 0%;
+        label {
+            vertical-align: super;
+            margin-left: 2%;
+        }
+    }
+}

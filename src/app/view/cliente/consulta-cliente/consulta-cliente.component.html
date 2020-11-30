@@ -1,0 +1,212 @@
+<div class="p-grid p-col-12">
+    <form>
+        <p-fieldset legend="Consultar Clientes">
+            <div class="p-col-12 box-totais">
+                <p-card class="p-col-10 " header="Buscar Clientes Cadastrados">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-sm-12 p-md-6 p-lg-3">
+                            <label for="nome">Nome / Razão Social</label>
+                            <input id="nome" type="text" aria-describedby="nome-help" name="nome" pInputText
+                                [(ngModel)]="clienteFilter.nome" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-3">
+                            <label for="identificador">CPF / CNPJ</label>
+                            <input id="identificador" type="text" aria-describedby="identificador-help"
+                                name="identificador" pInputText [(ngModel)]="clienteFilter.identificador" />
+                        </div>
+                        <div class="p-field p-sm-12 p-md-6 p-lg-2">
+                            <button pButton pRipple icon="fa fa-search" type="button" label="Buscar"
+                                (click)="pesquisar()" class="btn-buscar p-button-rounded"></button>
+                        </div>
+                    </div>
+                </p-card>
+                <div class="p-field p-sm-12 p-md-6 p-lg-2 btn-add">
+                    <button pButton pRipple icon="fa fa-plus" type="button" label="Adicionar Cliente"
+                        class="btn-buscar p-button-rounded" (click)="cadastrar()"></button>
+                </div>
+                <p-card header="Clientes Cadastrados">
+
+                    <p-table class="table" [value]="clientAcoes" styleClass="p-datatable-responsive-demo"
+                        [totalRecords]="totalRegistros" [paginator]="true" [rows]="clienteFilter.itensPorPagina"
+                        [showCurrentPageReport]="true">
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>E-mail</th>
+                                <th>Documento</th>
+                                <!-- <th>Data de Inclusão</th> -->
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-c>
+                            <tr>
+
+                                <td class=" data-table title-table" data-label="Nome">{{c.nome ? c.nome : '-'}}</td>
+                                <td class="data-table" data-label="Telefone" style="text-align: center;">{{c.telefone ? c.telefone : '-'}}</td>
+                                <td class="data-table" data-label="E-mail">{{c.email ? c.email : '-'}}</td>
+                                <td class="data-table" data-label="Documento" style="text-align: center;">
+                                    {{c.identificador ? c.identificador : '-'}}</td>
+                                <!-- <td class="data-table" data-label="Data de Inclusão">
+                                    {{c.dataCriacao ? c.dataCriacao : '-'}}</td> -->
+                                <td style="text-align: center;">
+                                    <button pButton pRipple icon="pi pi-search"
+                                        class="p-button-rounded p-button-info p-mr-2" pTooltip="Informações" tooltipPosition="top"
+                                        (click)="consultarCliente(c)"></button>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success p-mr-2" pTooltip="Editar" tooltipPosition="top"
+                                        (click)="editCliente(c)"></button>
+                                    <button pButton pRipple icon="pi pi-trash"
+                                        class="p-button-rounded p-button-warning  p-mr-2" pTooltip="Deletar" tooltipPosition="top"
+                                        (click)="deleteCliente(c)"></button>
+                                    <!-- <button pButton pRipple icon="pi pi-chart-line" pTooltip="Movimentações" tooltipPosition="top"
+                                        class="p-button-rounded p-button-Secondary p-mr-2"
+                                        (click)="movimentoCliente(c)"></button> -->
+                                        <button pButton pRipple icon="pi pi-book" pTooltip="Relatórios" tooltipPosition="top"
+                                        class="p-button-rounded p-button-help"
+                                        (click)="relatorioCliente(c)"></button>
+
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-card>
+            </div>
+        </p-fieldset>
+    </form>
+</div>
+
+
+<!-- =======================================================Modal- Dialog===================================================================================== -->
+
+
+<p-dialog [(visible)]="clienteDialog" [style]="{width: '1000px'}" header="Detalhes do Cliente" [modal]="true"
+    styleClass="p-fluid">
+  
+
+        <p-card class="p-grid" header="Dados do Cliente">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-sm-12 p-md-6 p-lg-12">
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" aria-describedby="nome-help" name="nome" pInputText
+                    [(ngModel)]="clienteSelect.nome" disabled  />
+                </div>
+                <div class="p-field p-sm-12 p-md-6 p-lg-12" *ngIf="clienteSelect.razaoSocial" >
+                    <label for="razaoSocial">Razão Social</label>
+                    <input id="razaoSocial" type="text" aria-describedby="nome-help" name="razaoSocial" [(ngModel)]="clienteSelect.razaoSocial"
+                    disabled  pInputText />
+                </div>
+                <div class="p-field p-sm-12 p-md-6 p-lg-6">
+                    <label for="identificador">CPF / CNPJ</label>
+                    <input id="identificador" type="text" aria-describedby="identificador-help" maxlength="18"
+                    disabled  name="identificador" pInputText [(ngModel)]="clienteSelect.identificador" />
+                </div>
+                <div class="p-field p-sm-12 p-md-6 p-lg-6">
+                    <label for="tipoCliente">Tipo</label>
+                    <input id="tipoCliente" type="text" aria-describedby="identificador-help"
+                    disabled  name="tipoCliente" pInputText [(ngModel)]="clienteSelect.tipoCliente" />
+
+                </div>
+                <div class="p-field p-sm-12 p-md-6 p-lg-4" *ngIf="clienteSelect.inscricaoEstadual">
+                    <label for="inscricaoEstadual">Inscrição Estadual</label>
+                    <input id="inscricaoEstadual" type="number" aria-describedby="inscricaoEstadual-help" name="inscricaoEstadual" pInputText disabled [(ngModel)]="clienteSelect.inscricaoEstadual"
+                         />
+                </div>
+                <div class="p-field p-sm-12 p-md-6 p-lg-4">
+                    <label for="telefone">Telefone</label>
+                    <input id="telefone" type="text" aria-describedby="telefone-help" mask="99-999999999" name="telefone"  disabled [(ngModel)]="clienteSelect.telefone"
+                       pInputText />
+                </div>
+                <div class="p-field p-sm-12 p-md-6 p-lg-4">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="text" aria-describedby="email-help" name="email" disabled [(ngModel)]="clienteSelect.email"
+                     pInputText />
+                </div>
+                
+            </div>
+        </p-card>
+        <p-card class="p-grid" header="Dados de Endereço">
+            <div class="p-fluid p-formgrid p-grid">
+                <p-table #dt [value]="enderecoSelect" [rows]="10" [paginator]="true"
+                [globalFilterFields]="['logradouro','numero','complemento','bairro','cidade','uf','cep']" [rowHover]="true"
+                dataKey="id"
+                [showCurrentPageReport]="true">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th >Logradouro</th>
+                        <th >Número</th>
+                        <th >Complemento</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>UF</th>
+                        <th >CEP</th>
+                       
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-e>
+                    <tr>
+                        <td data-label="Logradouro">{{e.logradouro}}</td>
+                        <td data-label="Número">{{e.numero}}</td>
+                        <td data-label="Complemento">{{e.complemento}}</td>
+                        <td data-label="Bairro">{{e.bairro}}</td>
+                        <td  data-label="Cidade">{{e.cidade}}</td>
+                        <td data-label="UF">{{e.uf}}</td>
+                        <td data-label="CEP">{{e.cep}}</td>
+                       
+                    </tr>
+                </ng-template>
+            </p-table>
+                
+            </div>
+        </p-card>
+        <p-card class="p-grid" header="Dados de Conta Bancária">
+            <div class="p-fluid p-formgrid p-grid">
+                
+                <p-table #dt [value]="contaSelect" [rows]="10" [paginator]="true"
+                [globalFilterFields]="['banco','banco','agencia','conta']" [rowHover]="true"
+                dataKey="id"
+                [showCurrentPageReport]="true">
+        
+        
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Número</th>
+                        <th >Banco</th>
+                        <th>Agência</th>
+                        <th>Conta</th>
+                        <th>Tipo de Conta</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-c>
+                    <tr>
+                        <td data-label="Cod.Banco" >{{c.banco}}</td>
+                        <td data-label="Banco" >{{c.nomeBanco}}</td>
+                        <td data-label="Agencia" >{{c.agencia}}</td>
+                        <td data-label="Conta" >{{c.conta}}</td>
+                        <td data-label="Tipo de Conta" >{{c.tipoConta}}</td>
+                        <td >
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editConta(c)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning  p-mr-2" (click)="deleteConta(c)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            </div>
+        </p-card>
+      
+
+
+  
+
+    
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<div class="p-lg-6 p-sm-12 p-md-12 chart-box">
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>   
+</div>
